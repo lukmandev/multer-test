@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<form action="/img" method="post" enctype="multipart/form-data">
+  		<input type="file" name="img" />
+  		<img src="product-1-1.png" alt="">
+	</form>
+	<button type="submit">SEND</button>
+	<pre></pre>
+
+	<script>
+		document.querySelector('button').addEventListener('click', () => {
+			const form = new FormData(document.querySelector('form'));
+			console.log(form.has('img'))
+			fetch('/img', {
+				method: 'post',
+	  			body: form
+			}).then(res => res.json()).then(json => {
+				document.querySelector('pre').innerHTML = JSON.stringify(json, null, 6);
+			})
+		});
+	</script>	
+</body>
+</html>
