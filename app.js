@@ -24,5 +24,5 @@ app.listen(PORT, () => {
 });
 
 app.post('/img', upload.single('img'), (req, res) => {
-	res.json({img: __dirname});
+	res.json({img: __dirname, env: process.env.TEST});
 });
