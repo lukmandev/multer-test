@@ -22,6 +22,10 @@ app.use(express.static('public'));
 app.listen(PORT, () => {
 	console.log('GOOD');
 });
+const path = require('path');
+app.get('/', (req, res) => {
+	res.sendFile(path.resolve('public/index.html'));
+});
 
 app.post('/img', upload.single('img'), (req, res) => {
 	res.json({img: __dirname, env: process.env.TEST, file: req.file});
